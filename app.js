@@ -9,15 +9,16 @@ const app = express();
 // View engine setup
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
-app.use(bodyParser.json());
+
 // Static folder
-app.use('./public', express.static());
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello');
+  res.send('contact');
 });
 
 const port = 5000;
