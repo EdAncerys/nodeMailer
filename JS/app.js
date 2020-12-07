@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
+const path = require('path');
 const nodemailer = require('nodemailer');
 
 const app = express();
@@ -12,6 +13,8 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+// Static folder
+app.use('./public', express.static());
 
 app.get('/', (req, res) => {
   res.send('Hello');
